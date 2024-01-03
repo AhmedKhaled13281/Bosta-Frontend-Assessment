@@ -6,13 +6,11 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import {
-  castTransitEvents,
-} from "../../Utilities/helperFunctions";
-import { useTranslation } from 'react-i18next';
+import { castTransitEvents } from "../../Utilities/helperFunctions";
+import { useTranslation } from "react-i18next";
 
 const ShipmentDetailsTable = ({ rows, isLoading, statusColor }) => {
-  let direction = localStorage.getItem('direction')
+  let direction = localStorage.getItem("direction");
   const { t } = useTranslation();
   if (isLoading) {
     return <h4>Loading ...</h4>;
@@ -21,19 +19,32 @@ const ShipmentDetailsTable = ({ rows, isLoading, statusColor }) => {
   const currentStatus = rows.map((row) => row?.reason);
   const newRaws = castTransitEvents(rows);
   const tableHead = ["Branch", "Date", "Time", "Details"];
-  const direc = {align : `${direction === 'rtl' ? "right" : "left"}` , textAlign : `${direction === 'rtl' ? "right" : "left"}` , fontFamily : "Cairo !important"}
-  const tableRowStyle = {fontFamily : "Cairo !important" , direction : direction ,align :  `${direction === 'rtl' ? "right" : "left"}` , textAlign:  `${direction === 'rtl' ? "right" : "left"}`}
+
+  const tableDirectionStyle = {
+    fontFamily: "Cairo !important",
+    direction: direction,
+    align: `${direction === "rtl" ? "right" : "left"}`,
+    textAlign: `${direction === "rtl" ? "right" : "left"}`,
+  };
+  
   return (
-    <div style={direc}>
-      <div sx={direc}>
+    <div style={tableDirectionStyle}>
+      <div sx={tableDirectionStyle}>
         <h3>{t("Shipment Details")}</h3>
       </div>
-      <TableContainer component={Paper} >
-        <Table sx={{direction : direction , minWidth: 650 , align : `${direction === 'rtl' ? "right" : "left"}` , textAlign: `${direction === 'rtl' ? "right" : "left"}`}} aria-label="simple table">
-          <TableHead sx={{ backgroundColor: "#FBFBFB"  , align : `${direction === 'rtl' ? "right" : "left"}` , textAlign: `${direction === 'rtl' ? "right" : "left"}`}}>
-            <TableRow style={direc}>
+      <TableContainer component={Paper}>
+        <Table
+          sx={{ minWidth: 650, ...tableDirectionStyle }}
+          aria-label="simple table"
+        >
+          <TableHead
+            sx={{ backgroundColor: "#FBFBFB", ...tableDirectionStyle }}
+          >
+            <TableRow style={tableDirectionStyle}>
               {tableHead.map((head) => (
-                <TableCell key={head} style={direc}>{t(head)}</TableCell>
+                <TableCell key={head} style={tableDirectionStyle}>
+                  {t(head)}
+                </TableCell>
               ))}
             </TableRow>
           </TableHead>
@@ -41,12 +52,16 @@ const ShipmentDetailsTable = ({ rows, isLoading, statusColor }) => {
             {newRaws?.map((row, index) => (
               <TableRow
                 key={row.time}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } ,fontFamily : "Cairo !important" , direction : direction ,align :  `${direction === 'rtl' ? "right" : "left"}` , textAlign:  `${direction === 'rtl' ? "right" : "left"}`}}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell style={tableRowStyle}>{t(branchName[3])}</TableCell>
-                <TableCell style={tableRowStyle}>{t(row.fullYearFormatted)}</TableCell>
-                <TableCell style={tableRowStyle}>{t(row.time)}</TableCell>
-                <TableCell sx={{fontFamily : "Cairo !important" , direction : direction ,align :  `${direction === 'rtl' ? "right" : "left"}` , textAlign:  `${direction === 'rtl' ? "right" : "left"}`}}>
+                <TableCell style={tableDirectionStyle}>
+                  {t(branchName[3])}
+                </TableCell>
+                <TableCell style={tableDirectionStyle}>
+                  {t(row.fullYearFormatted)}
+                </TableCell>
+                <TableCell style={tableDirectionStyle}>{t(row.time)}</TableCell>
+                <TableCell style={tableDirectionStyle}>
                   {t(row.details)}
                   <p style={{ display: "block", color: statusColor }}>
                     {t(currentStatus[index])}
