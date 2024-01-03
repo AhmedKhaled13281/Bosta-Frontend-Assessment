@@ -22,7 +22,7 @@ const ShipmentDetailsTable = ({ rows, isLoading, statusColor }) => {
   const newRaws = castTransitEvents(rows);
   const tableHead = ["Branch", "Date", "Time", "Details"];
   const direc = {align : `${direction === 'rtl' ? "right" : "left"}` , textAlign : `${direction === 'rtl' ? "right" : "left"}` , fontFamily : "Cairo !important"}
-
+  const tableRowStyle = {fontFamily : "Cairo !important" , direction : direction ,align :  `${direction === 'rtl' ? "right" : "left"}` , textAlign:  `${direction === 'rtl' ? "right" : "left"}`}
   return (
     <div style={direc}>
       <div sx={direc}>
@@ -43,9 +43,9 @@ const ShipmentDetailsTable = ({ rows, isLoading, statusColor }) => {
                 key={row.time}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } ,fontFamily : "Cairo !important" , direction : direction ,align :  `${direction === 'rtl' ? "right" : "left"}` , textAlign:  `${direction === 'rtl' ? "right" : "left"}`}}
               >
-                <TableCell style={{fontFamily : "Cairo !important"}}>{t(branchName[3])}</TableCell>
-                <TableCell >{t(row.fullYearFormatted)}</TableCell>
-                <TableCell>{t(row.time)}</TableCell>
+                <TableCell style={tableRowStyle}>{t(branchName[3])}</TableCell>
+                <TableCell style={tableRowStyle}>{t(row.fullYearFormatted)}</TableCell>
+                <TableCell style={tableRowStyle}>{t(row.time)}</TableCell>
                 <TableCell sx={{fontFamily : "Cairo !important" , direction : direction ,align :  `${direction === 'rtl' ? "right" : "left"}` , textAlign:  `${direction === 'rtl' ? "right" : "left"}`}}>
                   {t(row.details)}
                   <p style={{ display: "block", color: statusColor }}>

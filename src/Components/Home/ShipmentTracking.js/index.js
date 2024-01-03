@@ -27,7 +27,7 @@ const ShipmentTracking = ({data , statusColor , match}) => {
           display: "flex",
           justifyContent: "space-between",
           padding: "20px",
-          fontSize : `${match ? '14px' : '22px'}`,
+          fontSize : `${match ? '12px' : '22px'}`,
           direction : direction,
         }}
       >

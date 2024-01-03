@@ -60,6 +60,11 @@ const ColorlibStepIconRoot = styled("div")(
     }),
     ...(ownerState.completed && {
       backgroundColor: statusColor,
+      // width: 30,
+      // height: 30,
+      // position : 'absolute',
+      // top : 10,
+      //bottom : 30
     }),
 
   })
@@ -115,15 +120,15 @@ const ShipmentProgress = ({direction ,  status, statusColor , match}) => {
             <Step key={label} >
               <StepLabel
                 StepIconComponent={() => (
-                  <ColorlibStepIcon
+                                      <ColorlibStepIcon
                     direction={direction}
                     active={index === active}
                     completed={index < active}
                     statusColor={statusColor}
                     totalSteps={doneAll}
                   />
-                )}
-              >
+                  )}
+                  >
                 <p style={{fontSize : `${match ? '14px' : '18px'}` , fontWeight : "700" }}>{t(label)}</p>
               </StepLabel>
             </Step>

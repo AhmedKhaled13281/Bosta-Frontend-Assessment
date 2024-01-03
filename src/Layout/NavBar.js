@@ -67,21 +67,19 @@ const NavBar = ({match}) => {
   };
   
   let direction = localStorage.getItem('direction')
-  console.log(direction , langValue)
-  console.log(localStorage.getItem('language'))
-  
+
   return (
     <div style={{fontFamily : "Cairo !important"}}>
       <AppBar
         position="sticky"
         sx={{ backgroundColor: "white", color: "black" , }}
       >
-        <Container maxWidth="lg">
-          <Toolbar disableGutters style={{ direction: direction  , }}>
+        <Container>
+          <Toolbar disableGutters style={{ direction: direction  , display :'flex' , justifyContent : 'space-around'}}>
             <Box
               sx={{
-                flexGrow: 1,
-                display: { xs: "flex", md: "none", direction: direction },
+                direction: direction,
+                display: { xs: "flex", md: "none",  },
               }}
             >
               <IconButton
@@ -123,8 +121,9 @@ const NavBar = ({match}) => {
                   </MenuItem>
                 ))}
               </Menu>
+              
             </Box>
-            <Box>
+            <Box style={{display  :'flex'  , alignItems : 'center' , }}>
               {langValue === "en" ? (
                 <img
                   src="https://business.bosta.co/943f9ca6c0d5f0964ad49326c8da07f2.svg"
@@ -182,16 +181,17 @@ const NavBar = ({match}) => {
               <Box
                 onMouseEnter={handlePopoverOpen}
                 onMouseLeave={handlePopoverClose}
-                sx={{ display: "inline-block" , margin : '10px'}}
+                sx={{ display: "inline-block" , }}
               >
                 <Typography
                   sx={{
+
                     textAlign: "center",
                     fontWeight: "700",
                     fontSize : `${match ? '14px' : '22px'}`,
                     color: anchorPop ? "#E30613" : "inherit",
                     direction : direction,
-                    fontFamily : "Cairo !important"
+                    fontFamily : "Cairo !important",
                   }}
                 >
                   {t("Track Shipment")}
@@ -256,7 +256,7 @@ const NavBar = ({match}) => {
                   value={langValue}
                   onChange={handleDropDownChange}
                   sx={{
-                    marginLeft: "20px",
+                    // marginLeft: "20px",
                     fontWeight: "500",
                     fontSize: "20px",
                     "&:hover": {

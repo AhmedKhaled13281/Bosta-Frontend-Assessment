@@ -32,7 +32,7 @@ const Home = () => {
   return (
     <div>
       <NavBar match={match} />
-      <Container maxWidth="lg">
+      <Container >
         {!data || data?.error ? (
           <h2 style={{ textAlign: "center" }}>
             {data?.error ? <p>{t(data?.error)}</p> : t("Please Enter The ID of your Shipment")}
