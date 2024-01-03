@@ -11,7 +11,7 @@ const ShipmentTracking = ({data , statusColor , match}) => {
     const { t } = useTranslation();
 
     let direction = localStorage.getItem('direction')
-
+    const paragraphStyle = {color: "#A8A8A8"}
   return (
     <Box
       sx={{
@@ -31,7 +31,7 @@ const ShipmentTracking = ({data , statusColor , match}) => {
         }}
       >
         <Box>
-          <p style={{ color: "#A8A8A8" }}>
+          <p style={paragraphStyle}>
             {t("Delivery Number")} {data?.TrackingNumber}
           </p>
           <h5 style={{ color: statusColor, textTransform: "capitalize" }}>
@@ -39,15 +39,15 @@ const ShipmentTracking = ({data , statusColor , match}) => {
           </h5>
         </Box>
         <Box>
-          <p style={{ color: "#A8A8A8" }}>{t("Last Update")}</p>
+          <p style={paragraphStyle}>{t("Last Update")}</p>
           <h5>{lastUpdated}</h5>
         </Box>
         <Box>
-          <p style={{ color: "#A8A8A8" }}>{t('Trader Name')}</p>
+          <p style={paragraphStyle}>{t('Trader Name')}</p>
           <h5>{data?.provider}</h5>
         </Box>
         <Box>
-          <p style={{ color: "#A8A8A8" }}>{t('Delivery time within')}</p>
+          <p style={paragraphStyle}>{t('Delivery time within')}</p>
           {data?.PromisedDate ? (<h5>{deliveryTime}</h5>) : (<h5>-----</h5>)}
         </Box>
       </Box>
