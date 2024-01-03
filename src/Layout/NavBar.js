@@ -25,7 +25,7 @@ const pages = ["Home", "Pricing", "Sales"];
 const NavBar = ({match}) => {
   const searchInputRef = useRef('')
   const [anchorElNav, setAnchorElNav] = useState(null);
-  const [langValue, setLangValue] = useState(localStorage.getItem('language'));
+  const [langValue, setLangValue] = useState(localStorage.getItem('language') || 'en');
   const [anchorPop, setAnchorPop] = useState(null);
   const dispatch = useDispatch()
   const { t , i18n } = useTranslation();
@@ -51,10 +51,12 @@ const NavBar = ({match}) => {
   const handleDropDownChange = (event) => {
     setLangValue(event.target.value);
     i18n.changeLanguage(event.target.value);
-    localStorage.setItem('language', event.target.value);
-    localStorage.setItem('direction' , langValue === 'en' ? 'rtl' : 'ltr')
   };
 
+  // Handle Language and Direction
+  localStorage.setItem('language', langValue);
+  localStorage.setItem('direction' , langValue === 'en' ? 'ltr' : 'rtl')
+  
   // Handle Nav Menu (The Nav Bar Headers in Small Screens)
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -65,7 +67,9 @@ const NavBar = ({match}) => {
   };
   
   let direction = localStorage.getItem('direction')
-
+  console.log(direction , langValue)
+  console.log(localStorage.getItem('language'))
+  
   return (
     <div style={{fontFamily : "Cairo !important"}}>
       <AppBar

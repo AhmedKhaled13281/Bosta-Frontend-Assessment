@@ -32,9 +32,8 @@ const ColorlibConnector = styled(StepConnector)(({ theme, statusColor , directio
 
       // Handle RTL direction directly in CSS
       [theme.breakpoints.up('md')]: {
-        marginRight: `${direction === 'rtl' ? '-280px' : '0px'}`,
-        marginLeft: `${direction === 'rtl' ? '280px' : '0px'}`,
-
+        marginRight: `${direction === 'rtl' ? '-17rem' : '0px'}`,
+        marginLeft: `${direction === 'rtl' ? '17rem' : '0px'}`,
       },
     },
 
