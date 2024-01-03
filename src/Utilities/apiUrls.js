@@ -1,0 +1,1 @@
+export const getShipmentById = "https://tracking.bosta.co/shipments/track/"
