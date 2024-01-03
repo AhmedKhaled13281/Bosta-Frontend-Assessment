@@ -16,15 +16,12 @@ const ColorlibConnector = styled(StepConnector)(({ theme, statusColor , directio
   return {
     [`&.${stepConnectorClasses.alternativeLabel}`]: {
       top: 22,
-
     },
     [`&.${stepConnectorClasses.active} .${stepConnectorClasses.line}`]: {
-
       backgroundColor: statusColor,
     },
     [`&.${stepConnectorClasses.completed} .${stepConnectorClasses.line}`]: {
       backgroundColor: statusColor,
-      
     },
     [`& .${stepConnectorClasses.line}`]: {
       height: 5,
@@ -34,13 +31,9 @@ const ColorlibConnector = styled(StepConnector)(({ theme, statusColor , directio
       borderRadius: 1,
 
       // Handle RTL direction directly in CSS
-      [theme.breakpoints.down('md')]: {
-        marginRight: '0',
-        marginLeft: '0',
-      },
       [theme.breakpoints.up('md')]: {
-        marginRight: `${direction === 'rtl' ? '-280px' : '0'}`,
-        marginLeft: `${direction === 'rtl' ? '280px' : '0'}`,
+        marginRight: `${direction === 'rtl' ? '-280px' : '0px'}`,
+        marginLeft: `${direction === 'rtl' ? '280px' : '0px'}`,
       },
     },
 
@@ -78,7 +71,7 @@ function ColorlibStepIcon(props) {
     <ColorlibStepIconRoot
       ownerState={{ completed, active }}
       statusColor={props.statusColor}
-    direction={direction}
+      direction={direction}
     >
       {active && !totalSteps ? <AirportShuttleIcon style={{transform: `${direction === 'rtl' ? 'scaleX(-1)' : 'none'}`}}/> : totalSteps  ? <Check /> :  completed ? <Check />  : <SaveIcon />}
     </ColorlibStepIconRoot>
@@ -109,7 +102,7 @@ const ShipmentProgress = ({direction ,  status, statusColor , match}) => {
 
   return (
     <div>
-      <Box style={{width : '100%' , direction : direction , }}>
+      <Box style={{width : '100%'}}>
         <Stepper
           alternativeLabel
           activeStep={active}
@@ -130,11 +123,12 @@ const ShipmentProgress = ({direction ,  status, statusColor , match}) => {
                   />
                 )}
               >
-                <p style={{fontSize : `${match ? '14px' : '18px'}` , fontWeight : "700" , fontFamily : "Cairo !important"}}>{t(label)}</p>
+                <p style={{fontSize : `${match ? '14px' : '18px'}` , fontWeight : "700" }}>{t(label)}</p>
               </StepLabel>
             </Step>
           ))}
         </Stepper>
+
       </Box>
     </div>
   );
