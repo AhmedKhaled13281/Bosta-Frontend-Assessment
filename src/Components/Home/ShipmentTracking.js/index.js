@@ -18,7 +18,8 @@ const ShipmentTracking = ({data , statusColor , match}) => {
         border: "1px solid #A8A8A8",
         borderRadius: "5px",
         marginTop: "60px",
-        direction : direction
+        direction : direction,
+        overflow : 'auto'
       }}
     >
       <Box
@@ -53,7 +54,7 @@ const ShipmentTracking = ({data , statusColor , match}) => {
       </Box>
       <Divider />
 
-      <Box sx={{ padding: "20px" ,}}>
+      <Box sx={{ padding: "20px" , overflow : 'hidden'}}>
         <ShipmentProgress match={match} direction={direction} status={status} statusColor={statusColor}/>
       </Box>
 

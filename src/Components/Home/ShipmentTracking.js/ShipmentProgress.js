@@ -34,6 +34,7 @@ const ColorlibConnector = styled(StepConnector)(({ theme, statusColor , directio
       [theme.breakpoints.up('md')]: {
         marginRight: `${direction === 'rtl' ? '-280px' : '0px'}`,
         marginLeft: `${direction === 'rtl' ? '280px' : '0px'}`,
+
       },
     },
 
@@ -61,6 +62,7 @@ const ColorlibStepIconRoot = styled("div")(
     ...(ownerState.completed && {
       backgroundColor: statusColor,
     }),
+
   })
 );
 
@@ -101,8 +103,8 @@ const ShipmentProgress = ({direction ,  status, statusColor , match}) => {
   }
 
   return (
-    <div>
-      <Box style={{width : '100%'}}>
+    <div style={{}}>
+      <Box >
         <Stepper
           alternativeLabel
           activeStep={active}
