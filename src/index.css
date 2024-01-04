@@ -10,5 +10,9 @@ body {
 }
 
 code {
-  font-family: 'Cairo'
+  font-family: 'Cairo !important'
+}
+
+html{
+  font-family: 'Cairo !important'
 }

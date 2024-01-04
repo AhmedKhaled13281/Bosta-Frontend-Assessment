@@ -28,11 +28,11 @@ const ShipmentDetailsTable = ({ rows, isLoading, statusColor }) => {
   };
   
   return (
-    <div style={tableDirectionStyle}>
+    <div sx={tableDirectionStyle}>
       <div sx={tableDirectionStyle}>
         <h3>{t("Shipment Details")}</h3>
       </div>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} sx={tableDirectionStyle}>
         <Table
           sx={{ minWidth: 650, ...tableDirectionStyle }}
           aria-label="simple table"
@@ -40,30 +40,30 @@ const ShipmentDetailsTable = ({ rows, isLoading, statusColor }) => {
           <TableHead
             sx={{ backgroundColor: "#FBFBFB", ...tableDirectionStyle }}
           >
-            <TableRow style={tableDirectionStyle}>
+            <TableRow sx={tableDirectionStyle}>
               {tableHead.map((head) => (
-                <TableCell key={head} style={tableDirectionStyle}>
+                <TableCell key={head} sx={tableDirectionStyle} >
                   {t(head)}
                 </TableCell>
               ))}
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody >
             {newRaws?.map((row, index) => (
               <TableRow
                 key={row.time}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                sx={{ "&:last-child td, &:last-child th": { border: 0  , }  }}
               >
-                <TableCell style={tableDirectionStyle}>
+                <TableCell sx={tableDirectionStyle}>
                   {t(branchName[3])}
                 </TableCell>
-                <TableCell style={tableDirectionStyle}>
+                <TableCell sx={tableDirectionStyle}>
                   {t(row.fullYearFormatted)}
                 </TableCell>
-                <TableCell style={tableDirectionStyle}>{t(row.time)}</TableCell>
-                <TableCell style={tableDirectionStyle}>
+                <TableCell sx={tableDirectionStyle}>{t(row.time)}</TableCell>
+                <TableCell sx={tableDirectionStyle}>
                   {t(row.details)}
-                  <p style={{ display: "block", color: statusColor }}>
+                  <p style={{ display: "block", color: statusColor ,}}>
                     {t(currentStatus[index])}
                   </p>
                 </TableCell>

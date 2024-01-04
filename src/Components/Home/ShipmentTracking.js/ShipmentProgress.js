@@ -129,7 +129,7 @@ const ShipmentProgress = ({direction ,  status, statusColor , match}) => {
                   />
                   )}
                   >
-                <p style={{fontSize : `${match ? '14px' : '18px'}` , fontWeight : "700" }}>{t(label)}</p>
+                <p style={{fontSize : `${match ? '14px' : '18px'}` , fontWeight : "700" ,}}>{t(label)}</p>
               </StepLabel>
             </Step>
           ))}
