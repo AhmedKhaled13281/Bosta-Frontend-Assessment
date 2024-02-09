@@ -33,6 +33,7 @@ const Home = () => {
       <NavBar match={match} />
       <div>
         <h2 style={{textAlign : 'center'}}>Hiiiiii</h2>
+        <h4>Hello, World!</h4>
       </div>
       <Container>
         {!data || data?.error ? (
