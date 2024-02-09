@@ -10,38 +10,39 @@ import StepConnector, {
   stepConnectorClasses,
 } from "@mui/material/StepConnector";
 import { styled } from "@mui/system";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
-const ColorlibConnector = styled(StepConnector)(({ theme, statusColor , direction}) => {
-  return {
-    [`&.${stepConnectorClasses.alternativeLabel}`]: {
-      top: 22,
-    },
-    [`&.${stepConnectorClasses.active} .${stepConnectorClasses.line}`]: {
-      backgroundColor: statusColor,
-    },
-    [`&.${stepConnectorClasses.completed} .${stepConnectorClasses.line}`]: {
-      backgroundColor: statusColor,
-    },
-    [`& .${stepConnectorClasses.line}`]: {
-      height: 5,
-      border: 0,
-      backgroundColor:
-        theme.palette.mode === "dark" ? theme.palette.grey[800] : "#eaeaf0",
-      borderRadius: 1,
-
-      // Handle RTL direction directly in CSS
-      [theme.breakpoints.up('md')]: {
-        marginRight: `${direction === 'rtl' ? '-17rem' : '0px'}`,
-        marginLeft: `${direction === 'rtl' ? '17rem' : '0px'}`,
+const ColorlibConnector = styled(StepConnector)(
+  ({ theme, statusColor, direction }) => {
+    return {
+      [`&.${stepConnectorClasses.alternativeLabel}`]: {
+        top: 22,
       },
-    },
+      [`&.${stepConnectorClasses.active} .${stepConnectorClasses.line}`]: {
+        backgroundColor: statusColor,
+      },
+      [`&.${stepConnectorClasses.completed} .${stepConnectorClasses.line}`]: {
+        backgroundColor: statusColor,
+      },
+      [`& .${stepConnectorClasses.line}`]: {
+        height: 5,
+        border: 0,
+        backgroundColor:
+          theme.palette.mode === "dark" ? theme.palette.grey[800] : "#eaeaf0",
+        borderRadius: 1,
 
-  };
-});
+        // Handle RTL direction directly in CSS
+        [theme.breakpoints.up("md")]: {
+          marginRight: `${direction === "rtl" ? "-17rem" : "0px"}`,
+          marginLeft: `${direction === "rtl" ? "17rem" : "0px"}`,
+        },
+      },
+    };
+  }
+);
 
 const ColorlibStepIconRoot = styled("div")(
-  ({ theme, ownerState, statusColor , direction}) => ({
+  ({ theme, ownerState, statusColor, direction }) => ({
     backgroundColor:
       theme.palette.mode === "dark" ? theme.palette.grey[700] : "#ccc",
     zIndex: 1,
@@ -66,12 +67,11 @@ const ColorlibStepIconRoot = styled("div")(
       // top : 10,
       //bottom : 30
     }),
-
   })
 );
 
 function ColorlibStepIcon(props) {
-  const {direction ,  active, completed , totalSteps} = props;
+  const { direction, active, completed, totalSteps } = props;
 
   return (
     <ColorlibStepIconRoot
@@ -79,7 +79,19 @@ function ColorlibStepIcon(props) {
       statusColor={props.statusColor}
       direction={direction}
     >
-      {active && !totalSteps ? <AirportShuttleIcon style={{transform: `${direction === 'rtl' ? 'scaleX(-1)' : 'none'}`}}/> : totalSteps  ? <Check /> :  completed ? <Check />  : <SaveIcon />}
+      {active && !totalSteps ? (
+        <AirportShuttleIcon
+          style={{
+            transform: `${direction === "rtl" ? "scaleX(-1)" : "none"}`,
+          }}
+        />
+      ) : totalSteps ? (
+        <Check />
+      ) : completed ? (
+        <Check />
+      ) : (
+        <SaveIcon />
+      )}
     </ColorlibStepIconRoot>
   );
 }
@@ -91,50 +103,59 @@ const steps = [
   "DELIVERED",
 ];
 
-const ShipmentProgress = ({direction ,  status, statusColor , match}) => {
+const ShipmentProgress = ({ direction, status, statusColor, match }) => {
   const { t } = useTranslation();
 
   let active = 0;
-  let doneAll = false
+  let doneAll = false;
   if (status === "CANCELLED") {
     active = 1;
   } else if (status === "DELIVERED TO SENDER") {
     active = 2;
-
   } else {
     active = 3;
-    doneAll = true
+    doneAll = true;
   }
 
   return (
     <div style={{}}>
-      <Box >
+      <Box>
         <Stepper
           alternativeLabel
           activeStep={active}
           connector={
-            <ColorlibConnector direction={direction} statusColor={statusColor} active={active} />
+            <ColorlibConnector
+              direction={direction}
+              statusColor={statusColor}
+              active={active}
+            />
           }
         >
           {steps.map((label, index) => (
-            <Step key={label} >
+            <Step key={label}>
               <StepLabel
                 StepIconComponent={() => (
-                                      <ColorlibStepIcon
+                  <ColorlibStepIcon
                     direction={direction}
                     active={index === active}
                     completed={index < active}
                     statusColor={statusColor}
                     totalSteps={doneAll}
                   />
-                  )}
-                  >
-                <p style={{fontSize : `${match ? '14px' : '18px'}` , fontWeight : "700" ,}}>{t(label)}</p>
+                )}
+              >
+                <p
+                  style={{
+                    fontSize: `${match ? "14px" : "18px"}`,
+                    fontWeight: "700",
+                  }}
+                >
+                  {t(label)}
+                </p>
               </StepLabel>
             </Step>
           ))}
         </Stepper>
-
       </Box>
     </div>
   );
