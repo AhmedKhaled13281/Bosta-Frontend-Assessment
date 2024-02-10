@@ -31,7 +31,6 @@ const Home = () => {
 
   return (
     <div>
-    <p>Ahmed Rashad</p>
       <NavBar match={match} />
       <Container >
         {!data || data?.error ? (
@@ -60,6 +59,7 @@ const Home = () => {
           </>
         )}
       </Container>
+              <p>Ahmed Rashad</p>
     </div>
   );
 };
